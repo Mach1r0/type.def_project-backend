@@ -1,14 +1,13 @@
 from django.urls import path, include
-from django.urls import path
 from rest_framework import routers
-from user import views
-from artist import views
-from album import views
+from album import views as album_views
+from user import views as user_views
+from artist import views as artist_views
 
 router = routers.DefaultRouter()
-router.register(r'users', views.UserViewSet)
-router.register(r'artist', views.ArtistViewSet)
-router.register(r'Album', views.AlbumViewSet)
+router.register(r'users', user_views.UserViewSet)
+router.register(r'artists', artist_views.ArtistViewSet)
+router.register(r'albums', album_views.AlbumViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
