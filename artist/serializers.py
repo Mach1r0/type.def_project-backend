@@ -5,6 +5,6 @@ from artist.models import Artist
 class ArtistSerialaizer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Artist
-        field = '__all__'
+        fields = '__all__'
 
         
