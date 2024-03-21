@@ -1,6 +1,8 @@
 <template>
     <h1>Home Page</h1>
-  </template>
+    <h1>Welcome to Type.def</h1>
+
+</template>
   
   <script>
   export default {
