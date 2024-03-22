@@ -52,6 +52,13 @@ class UserView(viewsets.ViewSet):
         serializer = UserSerializer(user, context={'request': request})
         return Response(serializer.data)
     
+    def update(self, request, pk=None):
+        name = request.data.get('name')
+        try:
+            update_user = User.objects.get('name')
+        except User.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        
     def list(self, request):
         queryset = User.objects.all()
         serializer = UserSerializer(queryset, many=True, context={'request': request})

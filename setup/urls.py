@@ -12,7 +12,7 @@ router.register(r'reviews', album_views.ReviewViewSet)
 urlpatterns = [
     path('', include(router.urls)),
     path('users/', UserView.as_view({'get': 'list', 'delete': 'destroy', 'put': 'retrieve' }), name='user-list'),
-    path('users/<int:pk>/', UserView.as_view({'get': 'retrieve', 'delete': 'destroy', 'put': 'retrieve'}), name='user-detail'),
+    path('users/<int:pk>/', UserView.as_view({'get': 'retrieve', 'delete': 'destroy', 'put': 'update'}), name='user-detail'),
     path('users/create/', UserView.as_view({'post': 'create'}), name='user-create'),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
