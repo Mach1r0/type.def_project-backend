@@ -8,6 +8,7 @@ router = routers.DefaultRouter()
 router.register(r'users', user_views.UserViewSet)
 router.register(r'artists', artist_views.ArtistViewSet)
 router.register(r'albums', album_views.AlbumViewSet)
+router.register(r'reviews', album_views.ReviewViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
