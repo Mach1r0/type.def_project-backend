@@ -10,13 +10,13 @@ class Album(models.Model):
         ('synthwave', 'Synthwave'), 
         ('mallsoft', "Mallsoft")       
     ]
-    TYPER_CHOICE = [
+    TYPE_CHOICE = [
         ('ep', 'EP'),
         ('album', 'Album'),
     ]
     name = models.CharField(max_length=50)
     slug = models.CharField(max_length=100, unique=True, blank=True, null=True)
-    type = models.CharField(choices=TYPER_CHOICE, max_length=30)
+    type = models.CharField(choices=TYPE_CHOICE, max_length=30)
     release = models.DateField()
     artits = models.ManyToManyField(Artist)
     description = models.CharField(max_length=400)
