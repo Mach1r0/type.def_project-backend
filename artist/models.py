@@ -11,4 +11,3 @@ class Artist(models.Model):
     name = models.CharField(max_length=50)
     gender = models.CharField(choices=GENDER_CHOICES, max_length=10)
     location = models.CharField(max_length=100)
-    followers = models.IntegerField()
