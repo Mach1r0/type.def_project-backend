@@ -3,7 +3,7 @@ from .models import Album, Review, Artist
 class AlbumSerializer(serializers.HyperlinkedModelSerializer):
     image = serializers.ImageField(max_length=None, use_url=True)
     artist = serializers.SlugRelatedField(
-        many=False,
+        many=True,
         queryset=Artist.objects.all(),  # Allow all artists to be selected
         slug_field='name'  # Assuming 'name' is the field you want to display for the artist
      )
