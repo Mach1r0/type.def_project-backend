@@ -14,11 +14,12 @@ class Album(models.Model):
         ('ep', 'EP'),
         ('album', 'Album'),
     ]
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, unique=True)
+    image = models.ImageField(upload_to='reviews/', null=True, blank=True)
     slug = models.CharField(max_length=100, unique=True, blank=True, null=True)
     type = models.CharField(choices=TYPE_CHOICE, max_length=30)
     release = models.DateField()
-    artits = models.ManyToManyField(Artist)
+    artist = models.ManyToManyField(Artist)
     description = models.CharField(max_length=400)
     gender = models.CharField(choices=GENDER_CHOICES, max_length=30)
 

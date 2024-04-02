@@ -7,4 +7,3 @@ from artist.serializers import ArtistSerialaizer
 class ArtistViewSet(viewsets.ModelViewSet):
     queryset = Artist.objects.all().order_by('-name')
     serializer_class = ArtistSerialaizer
-    permissions_class = [permissions.IsAuthenticatedOrReadOnly]
