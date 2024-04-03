@@ -14,8 +14,8 @@ class Album(models.Model):
         ('ep', 'EP'),
         ('album', 'Album'),
     ]
-    name = models.CharField(max_length=50, unique=True)
-    image = models.ImageField(upload_to='reviews/', null=True, blank=True)
+    name = models.CharField(max_length=255)  # remove unique=True if it's there
+    image = models.ImageField(upload_to='albums/', null=True, blank=True)
     slug = models.CharField(max_length=100, unique=True, blank=True, null=True)
     type = models.CharField(choices=TYPE_CHOICE, max_length=30)
     release = models.DateField()
