@@ -1,14 +1,15 @@
 from django.db import models
+from django.utils.text import slugify
 
-# Create your models here.
 class Gender(models.Model):
-    imagem = models.ImageField(upload_to='generos/', null=True, blank=True)
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=100)
     description = models.TextField()
+    image = models.ImageField(upload_to='genders/', null=True, blank=True)
+    slug = models.SlugField(unique=True, null=True)  
 
     def __str__(self):
         return self.name
-
+            
 class Subgenres(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
