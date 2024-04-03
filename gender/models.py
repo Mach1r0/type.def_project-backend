@@ -5,7 +5,7 @@ class Gender(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
     image = models.ImageField(upload_to='genders/', null=True, blank=True)
-    slug = models.SlugField(unique=True, null=True)  
+    slug = models.CharField(max_length=100, unique=True, blank=True, null=True)
 
     def __str__(self):
         return self.name

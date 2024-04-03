@@ -22,7 +22,7 @@ class Album(models.Model):
     artist = models.ManyToManyField(Artist)
     description = models.CharField(max_length=400)
     gender = models.CharField(choices=GENDER_CHOICES, max_length=30)
-    
+
     def __str__(self):
         return self.name
     
