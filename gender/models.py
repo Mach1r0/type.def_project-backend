@@ -8,8 +8,8 @@ class Gender(models.Model):
     slug = models.CharField(max_length=100, unique=True, blank=True, null=True)
 
     def __str__(self):
-        return self.name
-            
+        return self.name   
+             
 class Subgenres(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()

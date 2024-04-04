@@ -12,6 +12,7 @@ class GenderSerializers(serializers.HyperlinkedModelSerializer):
         fields = [
             'name', 
             'description', 
+            'slug',
             'image',
         ]
 
