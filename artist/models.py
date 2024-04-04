@@ -12,6 +12,5 @@ class Artist(models.Model):
     gender = models.CharField(choices=GENDER_CHOICES, max_length=10)
     location = models.CharField(max_length=100)
     slug = models.CharField(max_length=100, unique=True, blank=True, null=True)
-    
     def __str__(self):
         return self.name

@@ -1,7 +1,13 @@
 from rest_framework import serializers
 from .models import Album, Review, Artist
+from gender.models import Gender
 class AlbumSerializer(serializers.HyperlinkedModelSerializer):
     image = serializers.ImageField(max_length=None, use_url=True)
+    gender = serializers.SlugRelatedField(
+        many=True,
+        queryset=Gender.objects.all(), 
+        slug_field='name' 
+    )
     artist = serializers.SlugRelatedField(
         many=True,
         queryset=Artist.objects.all(), 
@@ -21,6 +27,7 @@ class AlbumSerializer(serializers.HyperlinkedModelSerializer):
             'gender',
             'artist',
             'reviews',
+            'gender',
         ]
 
 class ReviewSerializer(serializers.HyperlinkedModelSerializer):
