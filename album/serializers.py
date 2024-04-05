@@ -4,12 +4,12 @@ from gender.models import Gender
 class AlbumSerializer(serializers.HyperlinkedModelSerializer):
     image = serializers.ImageField(max_length=None, use_url=True)
     gender = serializers.SlugRelatedField(
-        many=True,
+        many=False,  # Change this line
         queryset=Gender.objects.all(), 
         slug_field='name' 
     )
     artist = serializers.SlugRelatedField(
-        many=True,
+        many=False,
         queryset=Artist.objects.all(), 
         slug_field='name' 
      )
@@ -29,7 +29,7 @@ class AlbumSerializer(serializers.HyperlinkedModelSerializer):
             'reviews',
             'gender',
         ]
-
+        
 class ReviewSerializer(serializers.HyperlinkedModelSerializer):
     album = serializers.SlugRelatedField(
         many=False,

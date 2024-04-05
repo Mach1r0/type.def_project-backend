@@ -11,8 +11,9 @@ class Gender(models.Model):
         return self.name   
              
 class Subgenres(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=100)
     description = models.TextField()
-
+    gender = models.ForeignKey(Gender, on_delete=models.CASCADE)
+    
     def __str__(self):
         return self.name

@@ -13,7 +13,6 @@ class Artist(models.Model):
     location = models.CharField(max_length=100) 
     slug = models.CharField(max_length=100, unique=True, blank=True, null=True) 
     image = models.ImageField(upload_to='artists/', null=True, blank=True)
-    album = models.ForeignKey('album.Album', on_delete=models.CASCADE, related_name='album')
     
     def __str__(self):
         return self.name

@@ -13,7 +13,7 @@ class Album(models.Model):
     slug = models.CharField(max_length=100, unique=True, blank=True, null=True)
     type = models.CharField(choices=TYPE_CHOICE, max_length=30)
     release = models.DateField()
-    artist = models.ManyToManyField(Artist)
+    artist = models.ForeignKey(Artist, on_delete=models.CASCADE, related_name='albums')    
     description = models.CharField(max_length=400)
     gender = models.ForeignKey( Gender, on_delete=models.CASCADE, related_name="albums")
 
@@ -24,4 +24,4 @@ class Review(models.Model):
     title = models.CharField(max_length=40)
     content = models.TextField()
     stars = models.DecimalField(max_digits=2, decimal_places=1)
-    album = models.ForeignKey('Album', on_delete=models.CASCADE, related_name="reviews")
+    album = models.ForeignKey(Album, on_delete=models.CASCADE, related_name='reviews')
