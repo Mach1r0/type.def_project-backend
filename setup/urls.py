@@ -12,7 +12,7 @@ from artist.views import count_artist
 # other urls...
 router = routers.DefaultRouter()
 router.register(r'artists', artist_views.ArtistViewSet)
-router.register(r'albums', album_views.AlbumViewSet)
+router.register(r'albums', album_views.AlbumViewSet, basename='album')
 router.register(r'reviews', album_views.ReviewViewSet)
 router.register(r'genders', genders_views.GendersViewSet)
 router.register(r'subgenrer', genders_views.SubgenresViewSet)

@@ -1,14 +1,21 @@
 from rest_framework import viewsets 
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from rest_framework import permissions
 from album.models import Album, Review
 from album.serializers import AlbumSerializer, ReviewSerializer
 from django.http import JsonResponse
+from rest_framework.response import Response
 
 class AlbumViewSet(viewsets.ModelViewSet):
     queryset = Album.objects.all().order_by('-name')
     serializer_class = AlbumSerializer
+    lookup_field = 'slug'  # use the slug for object lookup
 
+    def get_object(self):
+        queryset = self.get_queryset()
+        filter_kwargs = {self.lookup_field: self.kwargs[self.lookup_field]}
+        obj = get_object_or_404(queryset, **filter_kwargs)
+        return obj
 class ReviewViewSet(viewsets.ModelViewSet):
     queryset = Review.objects.all().order_by()
     serializer_class = ReviewSerializer

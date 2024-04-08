@@ -1,10 +1,28 @@
 from rest_framework import serializers
 from .models import Album, Review, Artist
 from gender.models import Gender
+
+class ReviewSerializer(serializers.HyperlinkedModelSerializer):
+    album = serializers.SlugRelatedField(
+        many=False,
+        queryset=Album.objects.all(),
+        slug_field='slug'
+    )
+
+    class Meta:
+        model = Review
+        depth = 1
+        fields = [
+            'title',
+            'content',
+            'stars',
+            'album',
+        ]
+
 class AlbumSerializer(serializers.HyperlinkedModelSerializer):
     image = serializers.ImageField(max_length=None, use_url=True)
     gender = serializers.SlugRelatedField(
-        many=False,  # Change this line
+        many=False,
         queryset=Gender.objects.all(), 
         slug_field='name' 
     )
@@ -13,6 +31,7 @@ class AlbumSerializer(serializers.HyperlinkedModelSerializer):
         queryset=Artist.objects.all(), 
         slug_field='name' 
      )
+    reviews = ReviewSerializer(many=True, read_only=True)
 
     class Meta: 
         model =  Album 
@@ -27,22 +46,7 @@ class AlbumSerializer(serializers.HyperlinkedModelSerializer):
             'gender',
             'artist',
             'reviews',
-            'gender',
         ]
-        
-class ReviewSerializer(serializers.HyperlinkedModelSerializer):
-    album = serializers.SlugRelatedField(
-        many=False,
-        queryset=Album.objects.all(),
-        slug_field='slug'  # Use 'slug' instead of 'name'
-    )
-
-    class Meta:
-        model = Review
-        depth = 1
-        fields = [
-            'title',
-            'content',
-            'stars',
-            'album',
-        ]
+        extra_kwargs = {
+            'url': {'lookup_field': 'slug'}
+        }
