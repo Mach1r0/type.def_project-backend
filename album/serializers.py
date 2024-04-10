@@ -32,6 +32,7 @@ class AlbumSerializer(serializers.HyperlinkedModelSerializer):
         slug_field='name' 
      )
     reviews = ReviewSerializer(many=True, read_only=True)
+    review_count = serializers.SerializerMethodField()
 
     class Meta: 
         model =  Album 
@@ -46,7 +47,12 @@ class AlbumSerializer(serializers.HyperlinkedModelSerializer):
             'gender',
             'artist',
             'reviews',
+            'type',
+            'review_count',
         ]
         extra_kwargs = {
             'url': {'lookup_field': 'slug'}
         }
+
+    def get_review_count(self, obj):
+        return Review.objects.filter(album=obj).count()

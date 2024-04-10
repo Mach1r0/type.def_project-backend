@@ -15,8 +15,8 @@ class Album(models.Model):
     release = models.DateField()
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE, related_name='albums')    
     description = models.CharField(max_length=400)
-    gender = models.ForeignKey( Gender, on_delete=models.CASCADE, related_name="albums")
-
+    gender = models.ForeignKey(Gender, on_delete=models.CASCADE, related_name='albums')
+    
     def __str__(self):
         return self.name
     
