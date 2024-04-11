@@ -19,10 +19,10 @@ class ReviewSerializer(serializers.HyperlinkedModelSerializer):
             'album',
         ]
 
-class AlbumSerializer(serializers.HyperlinkedModelSerializer):
+class AlbumSerializer(serializers.ModelSerializer):
     image = serializers.ImageField(max_length=None, use_url=True)
-    gender = serializers.SlugRelatedField(
-        many=False,
+    genders = serializers.SlugRelatedField(
+        many=True,
         queryset=Gender.objects.all(), 
         slug_field='name' 
     )
@@ -44,7 +44,7 @@ class AlbumSerializer(serializers.HyperlinkedModelSerializer):
             'slug',
             'release',
             'description',
-            'gender',
+            'genders',
             'artist',
             'reviews',
             'type',

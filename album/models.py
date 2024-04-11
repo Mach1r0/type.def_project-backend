@@ -8,15 +8,15 @@ class Album(models.Model):
         ('ep', 'EP'),
         ('album', 'Album'),
     ]
-    name = models.CharField(max_length=255)  # remove unique=True if it's there
+    name = models.CharField(max_length=255)
     image = models.ImageField(upload_to='albums/', null=True, blank=True)
     slug = models.CharField(max_length=100, unique=True, blank=True, null=True)
     type = models.CharField(choices=TYPE_CHOICE, max_length=30)
     release = models.DateField()
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE, related_name='albums')    
     description = models.CharField(max_length=400)
-    gender = models.ForeignKey(Gender, on_delete=models.CASCADE, related_name='albums')
-    
+    genders = models.ManyToManyField(Gender, related_name='albums')
+
     def __str__(self):
         return self.name
     
