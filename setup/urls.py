@@ -8,9 +8,10 @@ from django.conf import settings
 from django.conf.urls.static import static
 from album.views import count_view
 from artist.views import count_artist
+from music import views as music_view
 
-# other urls...
 router = routers.DefaultRouter()
+router.register(r'music', music_view.MusicViewSet)
 router.register(r'artists', artist_views.ArtistViewSet)
 router.register(r'albums', album_views.AlbumViewSet, basename='album')
 router.register(r'reviews', album_views.ReviewViewSet)
