@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "corsheaders",
     'gender',
     'music',
+    'drf_yasg',
 ]
 
 REST_FRAMEWORK = {
