@@ -1,10 +1,15 @@
 from django.contrib import admin 
-from album.models import Album
+from album.models import Album, Review
 
-class ListaAlbum(admin.ModelAdmin):
-    list_display = ("name", 'id', 'type')
-    search_fields = ("id", 'nome')
-    list_per_page = 10
+@admin.register(Album)
+class AlbumAdmin(admin.ModelAdmin):
+    list_display = ['name', 'type', 'release', 'artist']
+    search_fields = ['name', 'artist__name']
+    list_filter = ['type', 'release', 'artist']
+    filter_horizontal = ['genders']
 
-admin.site.register(Album, ListaAlbum)
-
+@admin.register(Review)
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = ['title', 'stars', 'album']
+    search_fields = ['title', 'album__name']
+    list_filter = ['stars', 'album']
