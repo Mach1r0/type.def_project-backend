@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'gender',
     'music',
     'drf_yasg',
+    'django_jsonform',
 ]
 
 REST_FRAMEWORK = {
@@ -142,6 +143,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.User'
+
 
 CORS_ALLOWED_ORIGINS = True
 

@@ -13,6 +13,7 @@ from django.urls import path, include, re_path
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
+from django.contrib import admin
 
 schema_view = get_schema_view(
    openapi.Info(
@@ -33,11 +34,12 @@ router.register(r'genders', genders_views.GendersViewSet)
 router.register(r'subgenrer', genders_views.SubgenresViewSet)
 
 urlpatterns = [
-    re_path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
-    re_path(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-    re_path(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
-    path('', include(router.urls)),
-    path('api/', include('users.urls')),
-    path("countartist/", count_artist, name="count_artist"),
-    path('count/', count_view, name='count'),
+   path('admin/', admin.site.urls),
+   re_path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
+   re_path(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+   re_path(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+   path('', include(router.urls)),
+   path('api/', include('users.urls')),
+   path("countartist/", count_artist, name="count_artist"),
+   path('count/', count_view, name='count'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
