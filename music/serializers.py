@@ -22,5 +22,6 @@ class MusicSerializer(serializers.HyperlinkedModelSerializer):
             'name',
             'time',
             'artist',
-            'album',  # Include 'album' in fields
+            'album',
+            'musica',
         ]

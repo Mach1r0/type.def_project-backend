@@ -1,6 +1,7 @@
 from django.db import models
 from artist.models import Artist
 from gender.models import Gender
+from django_jsonform.models.fields import JSONField
 
 # Create your models here.
 class Album(models.Model):
@@ -8,6 +9,7 @@ class Album(models.Model):
         ('ep', 'EP'),
         ('album', 'Album'),
     ]
+   
     name = models.CharField(max_length=255)
     image = models.ImageField(upload_to='albums/', null=True, blank=True)
     slug = models.CharField(max_length=100, unique=True, blank=True, null=True)
@@ -16,7 +18,7 @@ class Album(models.Model):
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE, related_name='albums')    
     description = models.CharField(max_length=400)
     genders = models.ManyToManyField(Gender, related_name='albums')
-
+    
     def __str__(self):
         return self.name
     

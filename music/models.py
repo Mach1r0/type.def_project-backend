@@ -13,17 +13,3 @@ class Music(models.Model):
     def __str__(self):
         return self.name
     
-    ALBUMS_ITEMS = {
-        'type': 'array', 
-        'items': {
-            'type': 'object',
-            'properties': {
-                'album': {
-                    'type': 'string'
-                }
-            }
-        }
-    }
-
-    album_info = JSONField(schema=ALBUMS_ITEMS)
-
