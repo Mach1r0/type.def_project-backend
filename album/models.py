@@ -2,8 +2,8 @@ from django.db import models
 from artist.models import Artist
 from gender.models import Gender
 from django_jsonform.models.fields import JSONField
+from django.apps import apps
 
-# Create your models here.
 class Album(models.Model):
     TYPE_CHOICE = [
         ('ep', 'EP'),
@@ -18,7 +18,24 @@ class Album(models.Model):
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE, related_name='albums')    
     description = models.CharField(max_length=400)
     genders = models.ManyToManyField(Gender, related_name='albums')
-    
+
+    nome_get = {
+        'type': 'array', 
+        'items': {
+            'type': 'string' 
+        }
+    }    
+
+
+    nome = JSONField(schema=nome_get, blank=True, null=True)
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)  
+        if self.nome:
+            Music = apps.get_model('music', 'Music')
+            for music_name in self.musica:
+                Music.objects.create(name=music_name, artist=self.artist, album=self)
+
     def __str__(self):
         return self.name
     
