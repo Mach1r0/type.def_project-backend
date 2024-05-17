@@ -23,5 +23,4 @@ class MusicSerializer(serializers.HyperlinkedModelSerializer):
             'time',
             'artist',
             'album',
-            'musica',
         ]

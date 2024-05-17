@@ -6,7 +6,6 @@ from .serializers import UserSerializer
 from .models import User
 import jwt, datetime
 
-
 class RegisterUserView(APIView):
     def post(self, request):
         serializer = UserSerializer(data=request.data)

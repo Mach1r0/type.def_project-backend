@@ -8,7 +8,7 @@ from .serializers import GenderSerializers, SubGenresSerializers
 class GendersViewSet(viewsets.ModelViewSet):
     queryset = Gender.objects.all()
     serializer_class = GenderSerializers
-
+    
 class SubgenresViewSet(viewsets.ModelViewSet):
     queryset = Subgenres.objects.all()
     serializer_class = SubGenresSerializers

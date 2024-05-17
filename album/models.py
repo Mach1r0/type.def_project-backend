@@ -27,15 +27,15 @@ class Album(models.Model):
     }    
 
 
-    nome = JSONField(schema=nome_get, blank=True, null=True)
+    music_name = JSONField(schema=nome_get, blank=True, null=True)
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)  
-        if self.nome:
+        if self.music_name:
             Music = apps.get_model('music', 'Music')
-            for music_name in self.musica:
+            for music_name in self.music_name:
                 Music.objects.create(name=music_name, artist=self.artist, album=self)
-
+                
     def __str__(self):
         return self.name
     
