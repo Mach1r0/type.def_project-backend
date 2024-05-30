@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from .models import Album, Review, Artist
 from gender.models import Gender
-
+from music.serializers import MusicSerializer
 class ReviewSerializer(serializers.HyperlinkedModelSerializer):
     album = serializers.SlugRelatedField(
         many=False,
@@ -33,7 +33,7 @@ class AlbumSerializer(serializers.ModelSerializer):
      )
     reviews = ReviewSerializer(many=True, read_only=True)
     review_count = serializers.SerializerMethodField()
-
+    musics = MusicSerializer(many=True, read_only=True)
     class Meta: 
         model =  Album 
         depth = 1
@@ -49,6 +49,7 @@ class AlbumSerializer(serializers.ModelSerializer):
             'reviews',
             'type',
             'review_count',
+            'musics', 
         ]
         extra_kwargs = {
             'url': {'lookup_field': 'slug'}

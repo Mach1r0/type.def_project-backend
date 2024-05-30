@@ -19,23 +19,26 @@ class Album(models.Model):
     description = models.CharField(max_length=400)
     genders = models.ManyToManyField(Gender, related_name='albums')
 
-    nome_get = {
-        'type': 'array', 
+    music_info_schema = {
+        'type': 'array',
         'items': {
-            'type': 'string' 
+            'type': 'object',
+            'properties': {
+                'name': {'type': 'string'},
+                'time': {'type': 'string'}  
+            },
+            'required': ['name', 'time']
         }
-    }    
-
-
-    music_name = JSONField(schema=nome_get, blank=True, null=True)
+    }
+    music_info = JSONField(schema=music_info_schema, blank=True, null=True)
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)  
-        if self.music_name:
+        if self.music_info:
             Music = apps.get_model('music', 'Music')
-            for music_name in self.music_name:
-                Music.objects.create(name=music_name, artist=self.artist, album=self)
-                
+            for music_info_item in self.music_info:
+                Music.objects.create(name=music_info_item['name'], time=music_info_item['time'], artist=self.artist, album=self)
+
     def __str__(self):
         return self.name
     

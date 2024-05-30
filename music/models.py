@@ -6,7 +6,7 @@ from django.http import HttpResponse
 
 class Music(models.Model):  
     name = models.CharField(max_length=255)
-    time = models.FloatField(null=True, blank=True)
+    time = models.CharField(max_length=50, null=True, blank=True)
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE, related_name='musics')
     album = models.ForeignKey(Album, on_delete=models.CASCADE, related_name='musics')
 
