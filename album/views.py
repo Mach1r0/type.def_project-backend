@@ -9,7 +9,7 @@ from rest_framework.response import Response
 class AlbumViewSet(viewsets.ModelViewSet):
     queryset = Album.objects.all().order_by('-name')
     serializer_class = AlbumSerializer
-    pagination_class = pagination.PageNumberPagination  # Add this line
+    pagination_class = pagination.PageNumberPagination
 
     lookup_field = 'slug'
     def get_object(self):
